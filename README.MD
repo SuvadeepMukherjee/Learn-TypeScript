@@ -1,6 +1,6 @@
 # **Learn TypeScript – My Codecademy Journey 🚀**  
 
-![TypeScript Logo](https://upload.wikimedia.org/wikipedia/commons/6/6a/TypeScript_Logo.svg)  
+![ts-logo](./assets/ts-logo.png)
 
 📌 **This repository tracks my progress in Codecademy's** [Learn TypeScript](https://www.codecademy.com/learn/learn-typescript) **course.**  
 It includes my notes, exercises, and key takeaways as I dive into TypeScript fundamentals and best practices.  
