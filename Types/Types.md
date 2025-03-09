@@ -38,3 +38,38 @@
 ```
 
 - Through this knowledge of type shapes, TypeScript helps us quickly locate bugs in our code. 
+
+## Any
+
+There are some places where TypeScript will  not try to infer what type something is—generally when a variable is  declared without being assigned an initial value. In situations where it isn’t able to infer a type, TypeScript will consider a variable to be  of type `any`. 
+
+Variables of type `any` can be assigned to *any* value and TypeScript won’t give an error if they’re reassigned to a different type later on.
+
+```ts
+let onOrOff;
+
+onOrOff = 1;
+onOrOff = false;
+```
+
+In the code above, we declared the variable `onOrOff` without an initial value. TypeScript considers it to be of type `any`, and, therefore, doesn’t produce an error when we change the variable’s assignment from a `number` value to a `boolean` value. 
+
+## Variable Type Annotations
+
+In some situations, we’d like to declare a  variable without an initial value while still ensuring that it will only ever be assigned values of a certain type. If left as `any`, TypeScript won’t be able to protect us from accidentally assigning a variable to an incorrect type that could break our code. 
+
+We can tell TypeScript what type something is or will be by using a *type annotation*. 
+
+Variables can have *type annotations*  (also known as type declarations) added just after their names.  We  provide a type annotation by appending a variable with a colon (`:`) and the type (e.g., `number`, `string`, or `any`). 
+
+```ts
+let mustBeAString : string;
+mustBeAString = 'Catdog';
+
+mustBeAString = 1337;
+// Error: Type 'number' is not assignable to type 'string'
+```
+
+In the code above, we explicitly declare `mustBeAString` to be of type `string` without assigning it an initial value. This enables us to assign it the value `'Catdog'` without complaint, but when we later attempt to assign it a numerical  value, TypeScript will give us an error message telling us that a `number` is being improperly assigned to a variable of type `string`.
+
+Note => Type Annotations get automatically removed when comiled to JavaScript 
