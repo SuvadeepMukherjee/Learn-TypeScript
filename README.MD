@@ -22,14 +22,14 @@ The **Learn TypeScript** course covers:
 
 ## **🚀 Progress Tracker**
 
-| 📅 Date     | 📖 Lesson              | ✅ Status      | 📝 Notes |
-| ---------- | --------------------- | ------------- | ------- |
-| 2024-03-10 | Types                 |               | Notes   |
-| 2024-03-11 | Functions             | ⏳ In Progress | -       |
-| 2024-03-12 | Complex Types         | ❌ Not Started | -       |
-|            | Union Types           |               |         |
-|            | Type Narrowing        |               |         |
-|            | Advanced Object Types |               |         |
+| 📅 Date     | 📖 Lesson              | ✅ Status      | 📝 Notes                                                      |
+| ---------- | --------------------- | ------------- | ------------------------------------------------------------ |
+| 2024-03-14 | Types                 | ✅             | [Notes](https://github.com/SuvadeepMukherjee/Learn-TypeScript-/tree/main/Types/Notes) |
+| 2024-03-11 | Functions             | ⏳ In Progress | -                                                            |
+| 2024-03-12 | Complex Types         | ❌ Not Started | -                                                            |
+|            | Union Types           |               |                                                              |
+|            | Type Narrowing        |               |                                                              |
+|            | Advanced Object Types |               |                                                              |
 
 ------
 
