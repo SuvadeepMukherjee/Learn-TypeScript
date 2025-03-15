@@ -25,8 +25,8 @@ The **Learn TypeScript** course covers:
 | 📅 Date     | 📖 Lesson              | ✅ Status      | 📝 Notes                                                      |
 | ---------- | --------------------- | ------------- | ------------------------------------------------------------ |
 | 2024-03-14 | Types                 | ✅             | [Notes](https://github.com/SuvadeepMukherjee/Learn-TypeScript-/tree/main/Types/Notes) |
-| 2024-03-11 | Functions             | ⏳ In Progress | -                                                            |
-| 2024-03-12 | Complex Types         | ❌ Not Started | -                                                            |
+| 2024-03-15 | Functions             | ✅             | [Notes](https://github.com/SuvadeepMukherjee/Learn-TypeScript-/blob/main/Functions/Notes/Functions.MD) |
+| 2024-03-12 | Complex Types         | ⏳ in progress | -                                                            |
 |            | Union Types           |               |                                                              |
 |            | Type Narrowing        |               |                                                              |
 |            | Advanced Object Types |               |                                                              |
