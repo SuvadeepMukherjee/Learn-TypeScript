@@ -1,4 +1,4 @@
-# **Learn TypeScript – My Codecademy Journey 🚀**  
+# **Learn TypeScript -Codecadamy**
 
 ![ts-logo](./assets/ts-logo.png)
 
