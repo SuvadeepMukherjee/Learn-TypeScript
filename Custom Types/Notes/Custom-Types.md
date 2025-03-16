@@ -71,3 +71,14 @@ whichWayToAntarctica = 1; // Valid TypeScript code.
 whichWayToAntarctica = DirectionNumber.South; // Valid, equivalent to the above line.
 ```
 
+Strangely, even assigning arbitrary numbers, as in `whichWayToAntarctica = 943205`, will not lead to type errors. 
+
+String enums are *much* more strict. With string enums, variables cannot be assigned to strings at all!
+
+```ts
+let whichWayToAntarctica: DirectionString;
+whichWayToAntarctica = '\ (•◡•) / Arbitrary String \ (•◡•) /'; // Type error!
+whichWayToAntarctica = 'SOUTH'; // STILL a type error!
+whichWayToAntarctica = DirectionString.South; // The only allowable way to do this.
+```
+
