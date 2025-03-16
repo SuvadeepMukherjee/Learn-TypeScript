@@ -156,3 +156,11 @@ let bermudaTCoordinates: [number, number, string, number, number, string] = [25,
 These tuple type annotations guarantee that the types of the elements will be valid function parameters for `gpsNavigate()`.
 
 Now, we use JavaScript’s spread syntax to write a very readable function call:
+
+```ts
+gpsNavigate(...codecademyCoordinates, ...bermudaTCoordinates);
+// And by the way, this makes the return trip really convenient to compute too:
+gpsNavigate(...bermudaTCoordinates, ...codecademyCoordinates);
+// If there is a return trip . . . 
+```
+
