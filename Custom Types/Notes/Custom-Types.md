@@ -160,3 +160,91 @@ let secondString: MyOtherString = firstString; // Valid code.
 The reason this works is that `MyString` and `MyOtherString` are not distinct types. They are just alternative names for the same thing. 
 
 Using type aliases, we can make our code much simpler to understand. 
+
+## Function Types
+
+One of the neat things about JavaScript is that functions can be assigned to variables
+
+```ts
+let myFavoriteFunction = console.log; // Note the lack of parentheses.
+myFavoriteFunction('Hello World'); // Prints: Hello World
+```
+
+One of the neat things about TypeScript is that we can precisely control the kinds of functions assignable to a variable. We do this using *function types*, which specify the argument types and return type of a function. Here’s  an example of a function type that is only compatible with functions  that take in two string arguments and return a number.
+
+```ts
+type StringsToNumberFunction = (arg0: string, arg1: string) => number;
+```
+
+This syntax is just like arrow notation for functions, except instead of the return value we put the return type. In this case, the return type  is `number`. Because this is just a type, we did not write the function body at all. A variable of type `StringsToNumberFunction` can be assigned any compatible function:
+
+```ts
+let myFunc: StringsToNumberFunction;
+myFunc = function(firstName: string, lastName: string) {
+  return firstName.length + lastName.length;
+};
+
+myFunc = function(whatever: string, blah: string) {
+  return whatever.length - blah.length;
+};
+// Neither of these assignments results in a type error.
+```
+
+As we can see above, it doesn’t matter what we name the function parameters, so long as they have the correct types (`string    ` and `string`). Therefore, it doesn’t matter what we name the parameters in the type annotation (above, we chose `arg0` and `arg1`).
+
+There’s something **important**  to remember here. We must never be tempted to omit the parameter names  or the parentheses around the parameters in a function type annotation,  even if there is only one parameter. This code will not run!
+
+```ts
+type StringToNumberFunction = (string)=>number; // NO
+type StringToNumberFunction = arg: string=>number; // NO NO NO NO
+```
+
+Function types are most useful when applied to [callback functions](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function).
+
+## Generic Types
+
+TypeScript’s *generics* are ways to create collections of types  (and typed functions, and more) that share certain formal similarities.  These collections are parameterized by one or more type variables. Now  that that’s cleared up, let’s move on to the review!
+
+Hmm, maybe we should discuss this in a bit more detail. Actually, we have already seen an example of a *generic type* being used. Remember the array type syntax `Array<T>`? This is generic because we can substitute any type (either pre-defined or custom)  in the place of `T`. For example `Array<string>` is an array of strings.
+
+Generics give us the power to define our own collections of object types. Here’s an example:
+
+```ts
+type Family<T> = {
+  parents: [T, T], mate: T, children: T[]
+};
+```
+
+This code defines a collection of object types, with a different type for every value of `T`. The generic `Family<T>` cannot actually be used as a type in a type annotation. Instead, we must substitute `T` with some type of our choosing, for example `string`.   Then, `Family<string>` is *exactly* the same as the object type given by setting `T` to `string`: `{parents:[string,string], mate:string, children: string[]}`. So the following assignment will be error free:
+
+```ts
+let aStringFamily: Family<string> = {
+  parents: ['stern string', 'nice string'],
+  mate: 'string next door', 
+  children: ['stringy', 'stringo', 'stringina', 'stringolio']
+}; 
+```
+
+In general, writing generic types with  `type typeName<T>` allows us to use `T` within the type annotation as a type placeholder. Later, when the generic type is used, `T` is replaced with the provided type. (Writing `T` is just a convention. We could just as easily use `S` or `GenericType`. )
+
+## Generic Functions 
+
+We can also use generics to create collections of typed functions. *Generic functions* like these are probably easiest to understand via an example. And for  once, the example is actually useful! Imagine we wanted to create a  function that returns arrays filled with a certain value. Let’s just  write the JavaScript for now:
+
+```ts
+function getFilledArray(value, n) {
+  return Array(n).fill(value);
+}
+```
+
+Here, `getFilledArray('cheese', 3)` evaluates to  `['cheese', 'cheese', 'cheese']`. No problem, right? Well, we run into a problem when we try to specify  the function’s return type. We know it should be an array of whatever `value`‘s type is—do we have to write a separate type annotation for every type of `value`? Nope. Here, we are rescued by generic functions! 
+
+```ts
+function getFilledArray<T>(value: T, n: number): T[] {
+  return Array(n).fill(value);
+}
+```
+
+The above code tells TypeScript to make sure that `value` and the returned array have the same type `T`. When the function is invoked, we will provide `T`‘s value. For example, we can invoke the function using `getFilledArray<string>('cheese', 3)`, which sets `T` equal to `string`. This still evaluates to  `['cheese', 'cheese', 'cheese']`, but the function is now correctly typed and less prone to errors. The function `getFilledArray<string>` is precisely the same as if we had written `(value: string, n: number): string[]` in its type annotation.
+
+In general, writing generic functions with  `function functionName<T>` allows us to use `T` within the type annotation as a type placeholder. Later, when the function is invoked, `T` is replaced with the provided type. 
