@@ -52,3 +52,22 @@ enum Direction {
 }
 ```
 
+## String Enums vs Numeric Enums
+
+The enums we have studied so far are referred to as *numeric enums*, since they are based on `number`s. TypeScript also allows us to use enums based on `string`s, referred to as *string enums*. They are  defined very similarly:
+
+```ts
+enum DirectionNumber { North, South, East, West }
+enum DirectionString { North = 'NORTH', South = 'SOUTH', East = 'EAST', West = 'WEST' }
+```
+
+With numeric enums, the numbers could be assigned automatically, but  with string enums we must write the string explicitly, as shown above.  Technically, any string will do: `North = 'JabberWocky'` is a valid value definition. However, it is much better to use the convention shown here (`North = 'NORTH'`), where the string value of the enum variable is just the capitalized  form of the variable name. This way, error messages and logs will be  much more informative.
+
+It is recommend to always use string enums  because numeric enums allow for some behaviors that can let bugs sneak  into our code. For example, numbers can be assigned directly to numeric  enum variables:   
+
+```ts
+let whichWayToAntarctica: DirectionNumber;
+whichWayToAntarctica = 1; // Valid TypeScript code.
+whichWayToAntarctica = DirectionNumber.South; // Valid, equivalent to the above line.
+```
+
